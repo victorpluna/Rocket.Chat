@@ -91,6 +91,12 @@ const VerticalBarScrollableContent = React.forwardRef(function VerticalBarScroll
 	</Page.ScrollableContent>;
 });
 
+const VerticalBarSection = React.forwardRef(function VerticalBarScrollableContent({ children, ...props }, ref) {
+	return <Box p='x24' {...props} ref={ref}>
+		<Margins blockEnd='x16'>{children}</Margins>
+	</Box>;
+});
+
 const VerticalBarFooter = React.forwardRef(function VerticalBarScrollableContent({ children, ...props }, ref) {
 	return <Box is='footer' p='x24' {...props} ref={ref}>
 		<Margins blockEnd='x16'>{children}</Margins>
@@ -136,6 +142,7 @@ VerticalBar.Actions = React.memo(VerticalBarActions);
 VerticalBar.Header = React.memo(VerticalBarHeader);
 VerticalBar.Close = React.memo(VerticalBarClose);
 VerticalBar.Content = React.memo(VerticalBarContent);
+VerticalBar.Section = React.memo(VerticalBarSection);
 VerticalBar.ScrollableContent = React.memo(VerticalBarScrollableContent);
 VerticalBar.Skeleton = React.memo(VerticalBarSkeleton);
 VerticalBar.Button = React.memo(VerticalBarButton);
