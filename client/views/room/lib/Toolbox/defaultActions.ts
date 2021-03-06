@@ -53,6 +53,15 @@ addAction('uploaded-files-list', {
 	order: 6,
 });
 
+addAction('uploaded-state-files-list', {
+	groups: ['channel', 'group', 'direct', 'direct_multiple', 'live'],
+	id: 'uploaded-state-files-list',
+	title: 'State_Files',
+	icon: 'upload',
+	template: lazy(() => import('../../contextualBar/StateFiles')),
+	order: 6,
+});
+
 addAction('keyboard-shortcut-list', {
 	groups: ['channel', 'group', 'direct', 'direct_multiple'],
 	id: 'keyboard-shortcut-list',
