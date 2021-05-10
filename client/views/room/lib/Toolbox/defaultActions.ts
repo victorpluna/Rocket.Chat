@@ -5,6 +5,15 @@ import StateFilesToolbox from '../../contextualBar/StateFiles/StateFilesToolbox'
 
 import { addAction } from '.';
 
+addAction('uploaded-state-files-list', {
+	groups: ['channel', 'group', 'direct', 'direct_multiple', 'live'],
+	id: 'uploaded-state-files-list',
+	title: 'State_Files',
+	icon: 'upload',
+	renderAction: StateFilesToolbox,
+	template: lazy(() => import('../../contextualBar/StateFiles')),
+	order: 0,
+});
 
 addAction('rocket-search', {
 	groups: ['channel', 'group', 'direct', 'direct_multiple', 'live'],
@@ -51,16 +60,6 @@ addAction('uploaded-files-list', {
 	title: 'Files',
 	icon: 'clip',
 	template: lazy(() => import('../../contextualBar/RoomFiles')),
-	order: 6,
-});
-
-addAction('uploaded-state-files-list', {
-	groups: ['channel', 'group', 'direct', 'direct_multiple', 'live'],
-	id: 'uploaded-state-files-list',
-	title: 'State_Files',
-	icon: 'upload',
-	renderAction: StateFilesToolbox,
-	template: lazy(() => import('../../contextualBar/StateFiles')),
 	order: 6,
 });
 
