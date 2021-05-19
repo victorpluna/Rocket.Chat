@@ -174,6 +174,10 @@ export const roomTypes = new class RocketChatRoomTypes extends RoomTypesCommon {
 			};
 		}
 
+		if (subData && subData.tab) {
+			routeData.tab = subData.tab;
+		}
+
 		return FlowRouter.go(this.roomTypes[roomType].route.name, routeData, queryParams);
 	}
 }();
