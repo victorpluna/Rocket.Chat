@@ -14,17 +14,17 @@ import { renderRouteComponent } from './reactAdapters';
 
 const getRoomById = mem((rid) => call('getRoomById', rid));
 
-FlowRouter.goToRoomById = async (rid) => {
+FlowRouter.goToRoomById = async (rid, tab) => {
 	if (!rid) {
 		return;
 	}
 	const subscription = ChatSubscription.findOne({ rid });
 	if (subscription) {
-		return roomTypes.openRouteLink(subscription.t, subscription, FlowRouter.current().queryParams);
+		return roomTypes.openRouteLink(subscription.t, { ...subscription, tab }, FlowRouter.current().queryParams);
 	}
 
 	const room = await getRoomById(rid);
-	return roomTypes.openRouteLink(room.t, room, FlowRouter.current().queryParams);
+	return roomTypes.openRouteLink(room.t, { ...room, tab }, FlowRouter.current().queryParams);
 };
 
 
