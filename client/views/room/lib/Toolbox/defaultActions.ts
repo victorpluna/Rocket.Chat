@@ -1,9 +1,19 @@
 import { useMemo, lazy } from 'react';
 
 import { usePermission } from '../../../../contexts/AuthorizationContext';
+import StateFilesToolbox from '../../contextualBar/StateFiles/StateFilesToolbox';
 
 import { addAction } from '.';
 
+addAction('uploaded-state-files-list', {
+	groups: ['channel', 'group', 'direct', 'direct_multiple'],
+	id: 'uploaded-state-files-list',
+	title: 'State_Files',
+	icon: 'upload',
+	renderAction: StateFilesToolbox,
+	template: lazy(() => import('../../contextualBar/StateFiles')),
+	order: 0,
+});
 
 addAction('rocket-search', {
 	groups: ['channel', 'group', 'direct', 'direct_multiple', 'live'],

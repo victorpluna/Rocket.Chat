@@ -10,6 +10,7 @@ import UserAutoCompleteMultiple from '../../../ee/client/audit/UserAutoCompleteM
 import { useSetting } from '../../contexts/SettingsContext';
 import { usePermission } from '../../contexts/AuthorizationContext';
 import { useMethod } from '../../contexts/ServerContext';
+import { RecordedField } from '../../components/RecordedField/RecordedField';
 
 export const CreateChannel = ({
 	values,
@@ -62,6 +63,9 @@ export const CreateChannel = ({
 			<Modal.Close onClick={onClose}/>
 		</Modal.Header>
 		<Modal.Content>
+			<Field mbe='x24'>
+				<RecordedField recorded={values.recorded} handleRecorded={handlers.handleRecorded} />
+			</Field>
 			<Field mbe='x24'>
 				<Field.Label>{t('Name')}</Field.Label>
 				<Field.Row>
@@ -156,6 +160,7 @@ export default memo(({
 		readOnly: false,
 		encrypted: e2eEnabledForPrivateByDefault ?? false,
 		broadcast: false,
+		recorded: false,
 	};
 	const { values, handlers, hasUnsavedChanges } = useForm(initialValues);
 
@@ -167,6 +172,7 @@ export default memo(({
 		readOnly,
 		broadcast,
 		encrypted,
+		recorded,
 	} = values;
 	const {
 		handleUsers,
@@ -199,7 +205,8 @@ export default memo(({
 
 	const onCreate = useCallback(async () => {
 		const goToRoom = (rid) => {
-			FlowRouter.goToRoomById(rid);
+			const tab = recorded ? 'uploaded-state-files-list' : null;
+			FlowRouter.goToRoomById(rid, tab);
 		};
 
 		const params = {
@@ -209,6 +216,7 @@ export default memo(({
 			extraData: {
 				broadcast,
 				encrypted,
+				recorded,
 			},
 		};
 		let roomData;
@@ -233,6 +241,7 @@ export default memo(({
 		createPrivateChannel,
 		description,
 		encrypted,
+		recorded,
 		name,
 		onClose,
 		readOnly,
