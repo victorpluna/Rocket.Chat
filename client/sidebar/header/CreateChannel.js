@@ -10,17 +10,7 @@ import UserAutoCompleteMultiple from '../../../ee/client/audit/UserAutoCompleteM
 import { useSetting } from '../../contexts/SettingsContext';
 import { usePermission } from '../../contexts/AuthorizationContext';
 import { useMethod } from '../../contexts/ServerContext';
-
-const styles = {
-	recordedChannelBox: {
-		borderWidth: 2,
-		borderColor: '#E2E5E8',
-		backgroundColor: '#F6F6F6',
-		marginTop: 2,
-		paddingLeft: 20,
-		paddingRight: 20,
-	},
-};
+import { RecordedField } from '../../components/RecordedField/RecordedField';
 
 export const CreateChannel = ({
 	values,
@@ -74,16 +64,7 @@ export const CreateChannel = ({
 		</Modal.Header>
 		<Modal.Content>
 			<Field mbe='x24'>
-				<Box style={{ ...styles.recordedChannelBox, ...{ borderColor: values.recorded ? '#0000FF' : '#E2E5E8' } }} display='flex' justifyContent='space-between' alignItems='center'>
-					<Box display='flex' flexDirection='column'>
-						<Box display='flex' flexDirection='row'>
-							<ToggleSwitch checked={values.recorded} onChange={handlers.handleRecorded} style={{ marginRight: 20 }} />
-							<Field.Label>{t('Recorded_Channel')}</Field.Label>
-						</Box>
-						<Field.Description style={{ fontSize: '0.675rem' }}>{t('This_channel_will_be_recorded')}</Field.Description>
-					</Box>
-					<img style={{ height: 90 }} src={`/images/tabularium-logo-${ values.recorded ? 'blue' : 'grey' }.png`} alt='Tabularium logo' />
-				</Box>
+				<RecordedField recorded={values.recorded} handleRecorded={handlers.handleRecorded} />
 			</Field>
 			<Field mbe='x24'>
 				<Field.Label>{t('Name')}</Field.Label>
